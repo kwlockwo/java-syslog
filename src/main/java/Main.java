@@ -7,11 +7,27 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Main extends HttpServlet {
+  enum HttpHeader {
+    X_FORWARDED_FOR("X-Forwarded-For");
+
+    private String key;
+
+    private HttpHeader(String key) {
+        this.key = key;
+    }
+
+    public String key() {
+        return this.key;
+    }
+  }
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    String forwardFor = req.getHeader("X-Forwarded-For");
-    resp.getWriter().print("X-Forwarded-For: " + forwardFor);
+    for (HttpHeader header : HttpHeader.values()) {
+      String v = req.getHeader(header.key);
+      resp.getWriter().print(header.key + ": " + v);
+    }
   }
 
   public static void main(String[] args) throws Exception{
