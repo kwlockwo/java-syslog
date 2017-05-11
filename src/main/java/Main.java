@@ -11,7 +11,7 @@ public class Main extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     String forwardFor = req.getHeader("X-Forwarded-For");
-    resp.getWriter().print("X-Forward-For: " + forwardFor);
+    resp.getWriter().print("X-Forwarded-For: " + forwardFor);
   }
 
   public static void main(String[] args) throws Exception{
