@@ -6,7 +6,8 @@
 			<AppenderRef ref="Syslog-tcp" />
 		</Async>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<!--<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />-->
+			<SyslogLayout facility="LOCAL0"/>
 		</Console>
 		<Syslog name="Syslog-tcp" host="logs5.papertrailapp.com" port="22738"
 			protocol="TCP" appName="java-syslog" mdcId="mdc" facility="LOCAL0"
